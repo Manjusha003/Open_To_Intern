@@ -1,5 +1,6 @@
 const collegeModels = require("../models/collegeModels");
 const internModels = require("../models/internModels");
+const{isEmpty}=require("../validations/validators")
 
 let createCollege = async function (req, res) {
     try {

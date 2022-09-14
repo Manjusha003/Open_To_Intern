@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 const collegeSchema = new mongoose.Schema({
 
     name: {
-        type: String, unique: true
-        ,trim:true
+        type: String, unique: true,
+        trim:true
+       
     },
     fullName: {
         type: String,
-        unique: true
-        ,trim:true
+        unique: true,
+        trim:true
+        
     },
     logoLink: {
         type: String,

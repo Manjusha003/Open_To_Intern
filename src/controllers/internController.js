@@ -12,27 +12,27 @@ const createIntern = async function (req, res) {
 
 
         // Name validation
-      if (!name) return res.status(400).send({ status: false, msg: "Name is mandatory" });
-      if(!isEmpty(name))return res.status(400).send({ status: false, msg: "name is empty" });
-      if(!(/^[a-zA-Z\. ]*$/).test(name)) return res.send({status:false,msg:"name is not valid"});
+      if (!name) return res.status(400).send({ status: false, message: "Name is mandatory" });
+      if(!isEmpty(name))return res.status(400).send({ status: false, message: "name is empty" });
+      if(!(/^[a-zA-Z\. ]*$/).test(name)) return res.send({status:false,message:"name is not valid"});
 
       //Email validation
-        if (!email) return res.status(400).send({ status: false, msg: "Email is mandatory" });
-        if(!isEmpty(email))return res.status(400).send({ status: false, msg: "email is empty" });
+        if (!email) return res.status(400).send({ status: false, message: "Email is mandatory" });
+        if(!isEmpty(email))return res.status(400).send({ status: false, message: "email is empty" });
         data.email=data.email.trim()
         if (!(/^[a-z0-9_]{3,}@[a-z]{3,}[.]{1}[a-z]{3,6}$/).test(data.email)) {
-            return res.status(400).send({status: false , msg: "Email is invalid"})
+            return res.status(400).send({status: false , message: "Email is invalid"})
         }
         let emailCheck = await internModels.findOne({ email: email });
-        if (emailCheck) return res.status(400).send({ status: false, msg: " This Email is already used" });
+        if (emailCheck) return res.status(400).send({ status: false, message: " This Email is already used" });
         
 
         //mobile Validation
 
-        if (!mobile) return res.status(400).send({ status: false, msg: "Mobile is mandatory" });
+        if (!mobile) return res.status(400).send({ status: false, message: "Mobile is mandatory" });
         if(!isEmpty(mobile))return res.status(400).send({ status: false, msg: "mobile is empty" });
         data.mobile=data.mobile.trim()
-        if(!(/^[0-9]{10,14}$/).test(data.mobile)){
+        if(!(/^[0-9]{10}$/).test(data.mobile)){
             return res.status(400).send({status:false,msg:"mobile number is invalid must be of 10 digits"})
         }
         let mobileCheck = await internModels.findOne({ mobile: mobile });

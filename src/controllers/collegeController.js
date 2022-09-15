@@ -53,6 +53,7 @@ let createCollege = async function (req, res) {
 let getCollege = async function (req, res) {
     try {
         let data = req.query.collegeName;
+        data=data.toUpperCase();
         if (!data) return res.status(400).send({status:false,msg:"Enter college name to get the list of interns"});
         let collegeId = await collegeModels.findOne({ name: data })
         if (!collegeId) return res.status(400).send({status:false,msg:"college not found"})

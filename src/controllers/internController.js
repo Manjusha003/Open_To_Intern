@@ -3,6 +3,8 @@ const collegeModels = require('../models/collegeModels');
 const internModels = require("../models/internModels");
 const { isEmpty } = require('../validations/validators');
 
+
+// ============================== CREATE INTERN  post/functionup/interns ===========================
 const createIntern = async function (req, res) {
     try {
         let data = req.body;

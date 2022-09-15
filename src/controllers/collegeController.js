@@ -1,6 +1,9 @@
 const collegeModels = require("../models/collegeModels");
 const internModels = require("../models/internModels");
-const { isEmpty } = require("../validations/validators")
+const { isEmpty,validLogoLink } = require("../validations/validators")
+
+
+// ========================== CREATE COLLEGE  post/functionup/colleges =============================
 
 let createCollege = async function (req, res) {
     try {
@@ -34,7 +37,10 @@ let createCollege = async function (req, res) {
         if (!logoLink) {
             return res.status(400).send({ status: false, msg: "Please Provide logoLink" })
         }
-        if (!isEmpty(logoLink)) return res.status(400).send({ status: false, msg: "logolink is empty" })
+       
+        if (!isEmpty(logoLink)) return res.status(400).send({ status: false, msg: "logolink is empty" });
+       if(!validLogoLink(logoLink))
+        return res.status(400).send({status:false,msg:"logolink is invalid"});
         const checkLogoLink = await collegeModels.findOne({ logoLink: logoLink });
         if (checkLogoLink) {
             return res.status(400).send({ status: false, msg: "This logo is Already Exists" });
@@ -49,6 +55,7 @@ let createCollege = async function (req, res) {
 
 }
 
+// ============================ GET COLLEGE DETAILS get/functionup/collegeDetails ===========================
 
 let getCollege = async function (req, res) {
     try {
